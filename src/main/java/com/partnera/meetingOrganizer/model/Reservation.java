@@ -1,4 +1,4 @@
-package com.partnera.meetingOrganizer.entity;
+package com.partnera.meetingOrganizer.model;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -11,10 +11,10 @@ import java.sql.Time;
 @Table(name = "reservation")
 @Getter
 @Setter
-public class ReservationEntity {
+public class Reservation {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column
     private Integer id;
 

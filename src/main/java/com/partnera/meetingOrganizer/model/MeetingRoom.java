@@ -1,4 +1,4 @@
-package com.partnera.meetingOrganizer.entity;
+package com.partnera.meetingOrganizer.model;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -9,10 +9,10 @@ import javax.persistence.*;
 @Table(name = "meetingRoom")
 @Getter
 @Setter
-public class MeetingRoomEntity {
+public class MeetingRoom {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column
     @OneToOne
     private Integer id;
