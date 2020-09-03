@@ -1,16 +1,10 @@
 package com.partnera.meetingOrganizer.model;
 
-import lombok.Getter;
-import lombok.Setter;
-
 import javax.persistence.*;
 import java.sql.Date;
 import java.sql.Time;
 
 @Entity
-@Table(name = "reservation")
-@Getter
-@Setter
 public class Reservation {
 
     @Id
@@ -19,12 +13,9 @@ public class Reservation {
     private Integer id;
 
     @Column
-    @OneToOne
-    @MapsId
     private int meetingRoomId;
 
     @Column
-    @OneToOne
     @MapsId
     private int employeeId;
 
@@ -34,14 +25,54 @@ public class Reservation {
     @Column
     private Date reservationDate;
 
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public int getMeetingRoomId() {
+        return meetingRoomId;
+    }
+
+    public void setMeetingRoomId(int meetingRoomId) {
+        this.meetingRoomId = meetingRoomId;
+    }
+
+    public int getEmployeeId() {
+        return employeeId;
+    }
+
+    public void setEmployeeId(int employeeId) {
+        this.employeeId = employeeId;
+    }
+
+    public Time getReservationTime() {
+        return reservationTime;
+    }
+
+    public void setReservationTime(Time reservationTime) {
+        this.reservationTime = reservationTime;
+    }
+
+    public Date getReservationDate() {
+        return reservationDate;
+    }
+
+    public void setReservationDate(Date reservationDate) {
+        this.reservationDate = reservationDate;
+    }
+
     @Override
     public String toString() {
         return "Employee {" +
-                "id=" + id +
-                ", meetingRoomId='" + meetingRoomId + '\'' +
-                ", employeeId='" + employeeId + '\'' +
-                ", reservationTime='" + reservationTime + '\'' +
-                ", reservationDate=" + reservationDate +
+                "id=" + getId() +
+                ", meetingRoomId='" + getMeetingRoomId() + '\'' +
+                ", employeeId='" + getEmployeeId() + '\'' +
+                ", reservationTime='" + getReservationTime() + '\'' +
+                ", reservationDate=" + getReservationDate() +
                 '}';
     }
 }
