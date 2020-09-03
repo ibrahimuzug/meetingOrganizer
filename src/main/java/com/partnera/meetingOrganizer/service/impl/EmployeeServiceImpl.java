@@ -18,7 +18,7 @@ public class EmployeeServiceImpl implements EmployeeService {
 
     @Override
     public Optional<EmployeeDAO> getEmployeeById(Long id) {
-        Optional<Employee> employeeEntityOptional = employeeDAO.findById(id);
+        Optional<Employee> employeeOptional = employeeDAO.findById(id);
         return null;
     }
 
