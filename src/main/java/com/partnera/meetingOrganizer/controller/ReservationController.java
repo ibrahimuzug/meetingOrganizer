@@ -1,7 +1,7 @@
 package com.partnera.meetingOrganizer.controller;
 
-import com.partnera.meetingOrganizer.dao.MeetingRoomDAO;
 import com.partnera.meetingOrganizer.dao.ReservationDAO;
+import com.partnera.meetingOrganizer.model.Employee;
 import com.partnera.meetingOrganizer.service.ReservationService;
 import org.springframework.web.bind.annotation.*;
 
@@ -9,9 +9,11 @@ import java.util.Optional;
 
 public class ReservationController {
     private final ReservationService reservationService;
+    private final Employee employee;
 
-    public ReservationController(ReservationService reservationService) {
+    public ReservationController(ReservationService reservationService, Employee employee) {
         this.reservationService = reservationService;
+        this.employee = employee;
     }
 
     @GetMapping("/{id}")
@@ -22,6 +24,12 @@ public class ReservationController {
 
     @PostMapping("/create")
     public void createReservation(@RequestBody ReservationDAO reservationDAO) {
-        reservationService.createReservation(reservationDAO);
+        if (employee.getReservationStatus() == true) {
+            reservationService.createReservation(reservationDAO);
+
+        }
+        else
+            System.out.print("Toplantıyı Sadece Ekip Liderleri Gerçekleştirebilir." +
+                    " Lütfen Ekip Lideriniz İle Görüşün");
     }
 }

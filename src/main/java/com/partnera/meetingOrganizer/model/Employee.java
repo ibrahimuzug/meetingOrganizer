@@ -1,5 +1,7 @@
 package com.partnera.meetingOrganizer.model;
 
+import org.springframework.context.annotation.Bean;
+
 import javax.persistence.*;
 
 @Entity
@@ -21,6 +23,9 @@ public class Employee {
 
     @Column
     private Integer reservationAmount;
+
+    @Column
+    private Boolean reservationStatus;
 
 
     public Integer getId() {
@@ -57,6 +62,14 @@ public class Employee {
 
     public void setReservationAmount(Integer reservationAmount) {
         this.reservationAmount = reservationAmount;
+    }
+
+    public Boolean getReservationStatus() {
+        return reservationStatus;
+    }
+
+    public void setReservationStatus(Boolean reservationStatus) {
+        this.reservationStatus = reservationStatus;
     }
 
 
