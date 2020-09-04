@@ -12,11 +12,9 @@ import java.util.Optional;
 @RequestMapping("/employee")
 public class EmployeeController {
     private final EmployeeService employeeService;
-    public Employee employee;
 
-    public EmployeeController(EmployeeService employeeService, Employee employee) {
+    public EmployeeController(EmployeeService employeeService) {
         this.employeeService = employeeService;
-        this.employee = employee;
     }
 
     @GetMapping("/{id}")
@@ -27,6 +25,7 @@ public class EmployeeController {
 
     @PostMapping("/create")
     public void createEmployee(@RequestBody EmployeeDAO employeeDAO) {
+        Employee employee = new Employee();
         if (employee.getTitle() == "Ekip Lideri") {
             employee.setReservationStatus(true);
             employee.setReservationAmount(employee.getReservationAmount()-1);
