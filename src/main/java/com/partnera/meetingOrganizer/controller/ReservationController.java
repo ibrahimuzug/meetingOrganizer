@@ -1,35 +1,31 @@
 package com.partnera.meetingOrganizer.controller;
 
-import com.partnera.meetingOrganizer.dao.ReservationDAO;
-import com.partnera.meetingOrganizer.model.Employee;
+import com.partnera.meetingOrganizer.model.request.ReservationRequest;
+import com.partnera.meetingOrganizer.model.response.ReservationResponse;
 import com.partnera.meetingOrganizer.service.ReservationService;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.Optional;
 
+@RestController
+@RequestMapping("/reservation")
 public class ReservationController {
+
     private final ReservationService reservationService;
-    private final Employee employee;
 
-    public ReservationController(ReservationService reservationService, Employee employee) {
+    public ReservationController(ReservationService reservationService) {
         this.reservationService = reservationService;
-        this.employee = employee;
     }
 
-    @GetMapping("/{id}")
-    public @ResponseBody
-    Optional<ReservationDAO> getReservationById(@PathVariable("id") Long id) {
-        return reservationService.getReservationById(id);
+    @GetMapping("/{reservationCode}")
+    public @ResponseBody Optional<ReservationResponse> getReservationById(@PathVariable("reservationCode") String reservationCode) {
+        return reservationService.getReservationByCode(reservationCode);
     }
 
-    @PostMapping("/create")
-    public void createReservation(@RequestBody ReservationDAO reservationDAO) {
-        if (employee.getReservationStatus() == true) {
-            reservationService.createReservation(reservationDAO);
-
-        }
-        else
-            System.out.print("Toplantıyı Sadece Ekip Liderleri Gerçekleştirebilir." +
-                    " Lütfen Ekip Lideriniz İle Görüşün");
+    @PostMapping
+    public @ResponseBody String createReservation(@Valid @RequestBody ReservationRequest request) {
+        return reservationService.createReservation(request);
     }
 }
+

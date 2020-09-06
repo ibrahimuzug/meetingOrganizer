@@ -1,13 +1,16 @@
 package com.partnera.meetingOrganizer.service;
 
-import com.partnera.meetingOrganizer.dao.MeetingRoomDAO;
+import com.partnera.meetingOrganizer.model.request.MeetingRoomRequest;
+import com.partnera.meetingOrganizer.model.response.MeetingRoomResponse;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
-@Service
 public interface MeetingRoomService {
-    Optional<MeetingRoomDAO> getMeetingRoomById(Long id);
+    Optional<MeetingRoomResponse> getMeetingRoomById(Long id);
 
-    void createMeetingRoom(MeetingRoomDAO meetingRoomDAO);
+    Optional<List<MeetingRoomResponse>> getMeetingRooms();
+
+    void createMeetingRoom(MeetingRoomRequest request);
 }
